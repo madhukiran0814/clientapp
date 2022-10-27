@@ -104,7 +104,7 @@ const put=()=>{
 
             }
         }
-        console.log(ids);
+        console.log(data);
         setidd(ids);
         if(ids!==""){
         upd_exp();
