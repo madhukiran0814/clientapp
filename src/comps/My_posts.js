@@ -104,7 +104,7 @@ const put=()=>{
 
             }
         }
-        console.log(data);
+        console.log(localStorage.getItem("phno"));
         setidd(ids);
         if(ids!==""){
         upd_exp();
