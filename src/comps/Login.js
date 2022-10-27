@@ -98,11 +98,11 @@ const signup = async (props)=>{
       localStorage.setItem('USER',data.token)
       console.log(data.token)
       console.log(data.user);
-      localStorage.setItem('name',Name);
-      localStorage.setItem('email',email);
-      localStorage.setItem('phno',PhoneNumber);
-      localStorage.setItem('addr',addr);
-      localStorage.setItem('pin',pin);
+      localStorage.setItem('name',data.user.Name);
+      localStorage.setItem('email',data.user.email);
+      localStorage.setItem('phno',data.user.PhoneNumber);
+      localStorage.setItem('addr',data.user.addr);
+      localStorage.setItem('pin',data.user.pin);
 
       console.log("loged")
       if(data.token!=="Not Found"){
