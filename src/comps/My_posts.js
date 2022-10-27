@@ -119,7 +119,7 @@ const put=()=>{
 
 
 
-if (Data.length)
+if (Data!=[])
 {
 
 
