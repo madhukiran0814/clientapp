@@ -104,7 +104,6 @@ const put=()=>{
 
             }
         }
-        console.log(dates.includes(data[0].date.slice(0,10)),(data[0].stat==="Active"))
         console.log(ids);
         setidd(ids);
         if(ids!==""){
