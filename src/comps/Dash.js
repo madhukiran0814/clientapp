@@ -7,55 +7,118 @@ import BarChart from "../graphs/BarChart";
 
 const Dash=()=>{
 
-useEffect(()=>{
-  start();
-}
 
-);
+  useEffect(()=>{
+    get();
+  }
+  
+  );
+  
+  
+  
+  
+  
+  const [idd,setidd]=useState("");
+  
+  const [p,setp]=useState(0);
+  const [a,seta]=useState(0);
+  const [e,sete]=useState(0);
+  
+  const upd_exp=()=>{
 
-const [p,setp]=useState(0);
-const [a,seta]=useState(0);
-const [e,sete]=useState(0);
-
-
-
-  const start = async ()=>{
-    fetch(Ip+"/getposts",{
+    fetch(Ip+"/updateexp",{
       method:"POST",
       headers: {
        'Content-Type': 'application/json'
-     },
-     body:JSON.stringify({
-       "Pin":""
-     })
+      },
+      body:JSON.stringify({
+  
+        "ids":idd,
+        "stat":"Expired"
+  
+  
+  
+      })
+      
+      
+      })
+  
+  }
+  
+  
+  
+  const get=()=>{
+  
+  
+    const res=fetch(Ip+"/getposts",{
+    method:"POST",
+    headers: {
+     'Content-Type': 'application/json'
+    },
+    body:JSON.stringify({
+    "Pin":""
     })
-    .then(res=>res.json())
+    
+    
+    }).then(res=>res.json())
     .then(async (data)=>{
-
-var pp=0;
-var ee=0;
-var ss=0;
-
-      for (let i in data){
-        
-        pp+=1;
-
-        if (data[i].stat==="Expired"){
-          ee+=1
+    
+    
+    
+      var  date=new Date();
+        const previous = new Date();
+         previous.setDate(date.getDate() - 1);
+         var dates=Array(3);
+         dates.push(previous.toISOString().split('T')[0]);
+         dates.push(date.toISOString().split('T')[0]);
+    
+    var conf=new Array();
+    var ids="";
+  
+  
+    for (let i in data){
+        if (dates.includes(data[i].date.slice(0,10)) && (data[i].stat==="Active")){
         }
-        else if(data[i].stat=="Picked"){
-          ss+=1
+        else if(data[i].stat==="Active"){
+  
+            ids+=data[i]._id+",";
+  
         }
-
-      }
-
-seta(ss);
-setp(pp);
-sete(ee);
-
-    })
     }
-
+    console.log(ids);
+    setidd(ids);
+    if(ids!==""){
+    upd_exp();
+    }
+    
+  
+    var pp=0;
+    var ee=0;
+    var ss=0;
+    
+          for (let i in data){
+            
+            pp+=1;
+    
+            if (data[i].stat==="Expired"){
+              ee+=1
+            }
+            else if(data[i].stat=="Picked"){
+              ss+=1
+            }
+    
+          }
+    
+    seta(ss);
+    setp(pp);
+    sete(ee);
+  
+  
+    
+    })
+    
+    }
+  
 
 
 return(

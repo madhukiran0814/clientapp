@@ -13,7 +13,7 @@ function Loading() {
     useEffect(() => {
         const timer = setTimeout(() => {
           navigate('Login');
-        }, 4000);
+        }, 1000);
         return () => clearTimeout(timer);
       }, []);
 
