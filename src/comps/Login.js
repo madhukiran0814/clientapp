@@ -184,7 +184,7 @@ const [Screen,setScreen] = useState(0);
           <button type="button" class="btn btn-primary btn-lg"
             style={{paddingLeft: '2.5rem',paddingRight: '2.5rem'}} onClick={login}>Login</button>
           <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? </p>
-          <button type="submit" onClick={()=>setScreen(1)}>Register</button>
+          <button class="btn btn-primary" type="submit" onClick={()=>setScreen(1)}>Register</button>
         </div>
 
       </form>
