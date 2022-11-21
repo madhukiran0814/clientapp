@@ -4,6 +4,7 @@ import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { Ip } from './../constants/Ip';
 import { Helmet } from 'react-helmet';
+import e from 'cors';
 
 
 
@@ -52,7 +53,13 @@ fetch(Ip+"/UserSignin",{
 })
 .then(res=>res.json())
 .then(async (data)=>{
+
+
        try {
+        if(data.token=="Not Found"){
+          alert("please register first");
+          setScreen(1);
+        }else{
           localStorage.setItem('USER',data.token)
           console.log(data.token)
           console.log(data.user);
@@ -68,7 +75,7 @@ fetch(Ip+"/UserSignin",{
           }
           else{
             alert("You Don't have an account")
-          }
+          }}
        } catch (e) {
          console.log("error hai",e)
           
@@ -95,6 +102,12 @@ const signup = async (props)=>{
   .then(res=>res.json())
   .then(async (data)=>{
     try {
+
+if(data.token=="already exist"){
+  alert("User already Exist");
+  setScreen(0);
+}else{
+
       localStorage.setItem('USER',data.token)
       console.log(data.token)
       console.log(data.user);
@@ -110,7 +123,7 @@ const signup = async (props)=>{
       }
       else{
         alert("You Don't have an account")
-      }
+      }}
    } catch (e) {
      console.log("error hai",e)
       

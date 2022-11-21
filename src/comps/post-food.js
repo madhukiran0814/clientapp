@@ -133,17 +133,14 @@ var t='';
 
 var msg=food+" available at your location please contact "+phone;
 
+var xx='https://www.fast2sms.com/dev/bulkV2?authorization=JYhx2mhYgjqlowkBklPwpAMhUVicXWZPD4cGltxtVDmoKXyFCva8AQp6WTkN&route=q&message='+msg+'&language=english&flash=0&numbers='+x;
 
-
-  fetch(Ip+'/sendOrderAsSms?msg='+msg+"&numbers="+x,{
-    headers:new Headers({
-      Authorization:"Bearer " 
-    })
-    }).then(res=>res.json())
+  fetch(xx).then(res=>res.json())
     
-    .then(data=>{ 
+    .then(
+      (data)=>{ 
     
-      console.log("done");
+      console.log("Successfully notified");
      
     }
     )
